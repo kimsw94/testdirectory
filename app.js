@@ -68,6 +68,27 @@ try {
 })
 
 
+app.get("/signIn", async(req,res) => {
+    try { 
+        const { email, password } = await myDataSource(`SELECT email, password FROM users`);
+
+    if ( email == undefined ) {
+        console.log(error);
+        const error = new Error("ERROR EMAIL");
+        throw error;
+        return res.status(400).json("INVALID_EMAIL")
+    } 
+    if ( password == undefined ) {
+        console.log(error);
+        const error = new Error ("ERROR PASSWORD")
+    }
+    console.log("Logged_in_successful")
+    return res.status(200).json("LOGGED_IN")
+}
+
+
+})
+
 
 
 
